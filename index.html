@@ -916,14 +916,18 @@
         }
 
         button {
-            padding: 8px 16px;
+            padding: 8px 12px;
             background: #333;
             color: white;
             border: 1px solid #666;
             cursor: pointer;
             border-radius: 3px;
             font-size: 14px;
-            min-width: 40px;
+            min-width: 44px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         button:hover {
@@ -1005,7 +1009,7 @@
                             </div>
                         </div>
                         <span id="timeDisplay">0:00 / 1:00</span>
-                        <span id="cutInfo" style="font-size: 10px; margin-left: 8px;">Shot 1/24</span>
+                        <span id="cutInfo" style="font-size: 10px; margin-left: 8px;">Shot 1/22</span>
                     </div>
                 </div>
             </div>
@@ -1207,18 +1211,16 @@
             cut9: 2000,   // tape1
             cut10: 2000,  // tape2
             cut11: 2000,  // tape3
-            cut12: 2000,  // tape4
-            cut13: 2500,  // wave1
-            cut14: 2500,  // wave2
-            cut15: 2500,  // forum1
-            cut16: 2500,  // forum2
-            cut17: 3000,  // forum3
-            cut18: 3000,  // hello vincent combined
-            cut19: 2000,  // glitch5
-            cut20: 3000,  // crash zoom out
-            cut21: 2000,  // pov1
-            cut22: 3000,  // end1
-            cut23: 7000   // end2
+            cut12: 2500,  // wave1
+            cut13: 2500,  // wave2
+            cut14: 2500,  // forum1
+            cut15: 2500,  // forum2
+            cut16: 3000,  // hello vincent combined
+            cut17: 2000,  // glitch5
+            cut18: 3000,  // crash zoom out
+            cut19: 2000,  // pov1
+            cut20: 3000,  // end1
+            cut21: 7000   // end2
         };
 
         // Content for each cut
@@ -1237,7 +1239,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="scene-description">[Vincent's desktop - struggling with password]</div>
+                    <div class="scene-description">[Slow zoom into old CRT monitor, cursor blinking, password field empty]</div>
                 </div>
             `,
             cut2: `
@@ -1252,7 +1254,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="scene-description">[Personal photos - memories of Italy]</div>
+                    <div class="scene-description">[Quick cuts through photo thumbnails, distant mountains, familiar face appears]</div>
                 </div>
             `,
             cut3: `
@@ -1264,7 +1266,7 @@
                             <div class="chat-message">Some old recordings need restoration</div>
                         </div>
                     </div>
-                    <div class="scene-description">[Chat notification - new audio restoration job]</div>
+                    <div class="scene-description">[Chat window slides in, typing indicators, mysterious client offering work]</div>
                 </div>
             `,
             cut4: `
@@ -1279,7 +1281,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="scene-description">[Mysterious email about Viola Fossati]</div>
+                    <div class="scene-description">[Email list scrolls, unknown sender highlighted, subject line hints at tragedy]</div>
                 </div>
             `,
             cut5: `
@@ -1288,7 +1290,7 @@
                     <div class="vhs-content">
                         <div class="vhs-image"></div>
                     </div>
-                    <div class="scene-description">[Degraded VHS footage - unclear figure]</div>
+                    <div class="scene-description">[Grainy analog video, tracking lines, shadowy figure in doorway, unstable image]</div>
                 </div>
             `,
             cut6: `
@@ -1299,7 +1301,7 @@
                             <div class="vhs-date">14.10.1985</div>
                         </div>
                     </div>
-                    <div class="scene-description">[VHS timestamp - October 1985]</div>
+                    <div class="scene-description">[Red timestamp burns in corner, video quality degrades, audio crackles]</div>
                 </div>
             `,
             cut7: `
@@ -1310,7 +1312,7 @@
                             <div style="font-size: 36px; color: #f0f0f0;">Viola Fossati</div>
                         </div>
                     </div>
-                    <div class="scene-description">[Viola's name appears on degraded tape]</div>
+                    <div class="scene-description">[Name emerges through static, video flickers, haunting presence felt]</div>
                 </div>
             `,
             cut8: `
@@ -1321,100 +1323,74 @@
                             <div style="font-size: 24px; color: #aaa;">Colle Lunera</div>
                         </div>
                     </div>
-                    <div class="scene-description">[Location revealed - Colle Lunera, Italy]</div>
+                    <div class="scene-description">[Italian location text overlays mountain landscape, connection to Vincent's photos]</div>
                 </div>
             `,
             cut9: `
                 <div class="cut tape-scene">
                     <div class="tape-reel"></div>
-                    <div class="scene-description">[Professional tape reel spinning]</div>
+                    <div class="scene-description">[Professional tape reel spinning, studio equipment hums, restoration begins]</div>
                 </div>
             `,
             cut10: `
-                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #1a1a1a; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <div style="width: 200px; height: 200px; border: 10px solid #444; border-radius: 50%; position: relative; animation: spin 2s linear infinite;">
-                        <div style="position: absolute; inset: 30%; border: 5px solid #666; border-radius: 50%;"></div>
-                    </div>
-                    <div style="margin-top: 30px; color: #999; font-size: 18px;">TAPE 1/92</div>
-                    <div class="scene-description">[Tape labeled "1/92" - January 1992]</div>
+                <div class="cut tape-scene" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <div style="color: #f00; font-size: 24px;">DAMAGED</div>
+                    <div class="scene-description">[Close-up on damage warning, red alert text, audio deterioration visible]</div>
                 </div>
             `,
             cut11: `
                 <div class="cut tape-scene" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
-                    <div style="color: #f00; font-size: 24px;">DAMAGED</div>
-                    <div class="scene-description">[Warning - tape severely damaged]</div>
+                    <div class="tape-reel" style="border-color: #f00; animation-duration: 0.5s;"></div>
+                    <div style="margin-top: 30px; color: #ff0; font-size: 18px;">RECOVERY IN PROGRESS...</div>
+                    <div class="scene-description">[Recovery progress bar crawls, corrupted reel spins erratically, sparks fly]</div>
                 </div>
             `,
             cut12: `
-                <div class="cut tape-scene" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
-                    <div class="tape-reel" style="border-color: #f00; animation-duration: 0.5s;"></div>
-                    <div style="margin-top: 30px; color: #ff0; font-size: 18px;">RECOVERY IN PROGRESS...</div>
-                    <div class="scene-description">[Attempting to restore corrupted audio]</div>
+                <div class="cut wavesplice">
+                    <div style="margin-bottom: 20px;">WaveSplice v3.2 - Professional Audio Restoration</div>
+                    <div class="waveform"></div>
+                    <div class="scene-description">[Waveform visualizer scanning, frequency analysis, clean professional interface]</div>
                 </div>
             `,
             cut13: `
                 <div class="cut wavesplice">
-                    <div style="margin-bottom: 20px;">WaveSplice v3.2 - Professional Audio Restoration</div>
-                    <div class="waveform"></div>
-                    <div class="scene-description">[Professional audio software analyzing waveforms]</div>
+                    <div style="margin-bottom: 20px; color: #ff0;">WARNING: Anomalous frequencies detected</div>
+                    <div class="waveform" style="filter: hue-rotate(90deg);"></div>
+                    <div class="scene-description">[Warning alerts flash, impossible frequencies detected, software struggles]</div>
                 </div>
             `,
             cut14: `
-                <div class="cut wavesplice">
-                    <div style="margin-bottom: 20px; color: #ff0;">WARNING: Anomalous frequencies detected</div>
-                    <div class="waveform" style="filter: hue-rotate(90deg);"></div>
-                    <div class="scene-description">[Software detecting impossible audio patterns]</div>
+                <div class="cut forum">
+                    <div class="forum-post">
+                        <strong>soStrangely95:</strong> There's something wrong with these recordings...
+                    </div>
+                    <div class="scene-description">[Forum post appears, typing animation, community of audio experts worried]</div>
                 </div>
             `,
             cut15: `
                 <div class="cut forum">
                     <div class="forum-post">
-                        <strong>soStrangely95:</strong> There's something wrong with these recordings...
+                        <strong>portastrambo:</strong> Equipment failure during digitization. Never seen anything like it.
                     </div>
-                    <div class="scene-description">[Audiophile forum - users concerned]</div>
+                    <div class="forum-post warning">
+                        <strong>I♥VF:</strong> DO NOT restore the final section.
+                    </div>
+                    <div class="scene-description">[Multiple urgent posts stack up, warning borders flash, panic spreads]</div>
                 </div>
             `,
             cut16: `
-                <div class="cut forum">
-                    <div class="forum-post">
-                        <strong>portastrambo:</strong> Equipment failure during digitization. Never seen anything like it.
-                    </div>
-                    <div class="forum-post warning">
-                        <strong>I♥VF:</strong> DO NOT restore the final section.
-                    </div>
-                    <div class="scene-description">[Forum warnings escalating - urgent messages]</div>
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
+                    <div style="color: #fff; font-size: 48px; font-weight: bold; text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; z-index: 10; position: relative; display: block; text-align: center; line-height: 1.2; animation: helloVincent 3s ease-in-out;">HELLO VINCENT</div>
+                    <div class="scene-description">[Text materializes from digital noise, impossible knowledge revealed, reality breaks]</div>
                 </div>
             `,
             cut17: `
-                <div class="cut forum">
-                    <div class="forum-post">
-                        <strong>portastrambo:</strong> Equipment failure during digitization. Never seen anything like it.
-                    </div>
-                    <div class="forum-post warning">
-                        <strong>I♥VF:</strong> DO NOT restore the final section.
-                    </div>
-                    <div class="forum-post warning">
-                        <strong>DeepSound:</strong> She's still in there. In the tape. I can hear her.
-                    </div>
-                    <div class="forum-post warning" style="border-color: #f00; animation: pulse 0.5s infinite;">
-                        <strong>soStrangely95:</strong> STOP THE RESTORATION NOW! Something is wrong!
-                    </div>
-                    <div class="scene-description">[Forum panic - warnings escalating]</div>
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
+                    <div style="position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #ff00ff, #ff00ff 10px, #00ffff 10px, #00ffff 20px); opacity: 0.8; animation: corruptMove 0.5s infinite; z-index: 5;"></div>
+                    <div class="scene-description">[Glitch bars consume screen, reality fragments, digital space collapses]</div>
                 </div>
             `,
             cut18: `
-                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
-                    <div style="color: #fff; font-size: 48px; font-weight: bold; text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; z-index: 10; position: relative; display: block; text-align: center; line-height: 1.2; animation: helloVincent 3s ease-in-out;">HELLO VINCENT</div>
-                    <div class="scene-description">[She knows his name]</div>
-                </div>
-            `,
-            cut19: `
-                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
-                    <div style="position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #ff00ff, #ff00ff 10px, #00ffff 10px, #00ffff 20px); opacity: 0.8; animation: corruptMove 0.5s infinite; z-index: 5;"></div>
-                    <div class="scene-description">[Complete system corruption]</div>
-                </div>
-            `,
-            cut20: `
                 <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; overflow: hidden;">
                     <!-- Studio footage background -->
                     <div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%); animation: crashZoomOut 3s ease-out;">
@@ -1426,10 +1402,10 @@
                         <div style="position: absolute; bottom: 25%; left: 42%; width: 8%; height: 15%; background: #222; border: 1px solid #444;"></div>
                         <div style="position: absolute; bottom: 25%; left: 52%; width: 8%; height: 15%; background: #222; border: 1px solid #444;"></div>
                     </div>
-                    <div class="scene-description">[Crash zoom out - real studio footage]</div>
+                    <div class="scene-description">[Rapid pull-back reveals real studio, equipment everywhere, boundary between digital/real blurs]</div>
                 </div>
             `,
-            cut21: `
+            cut19: `
                 <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; overflow: hidden;">
                     <!-- Monitor showing corruption -->
                     <div style="position: absolute; width: 40%; height: 30%; top: 25%; left: 30%; background: #1a1a1a; border: 3px solid #333; animation: monitorGlitch 2s ease-out;">
@@ -1437,21 +1413,21 @@
                     </div>
                     <!-- Shoulder silhouette -->
                     <div style="position: absolute; bottom: -10%; right: -5%; width: 40%; height: 60%; background: linear-gradient(45deg, #111, #222); border-radius: 50% 50% 0 0; transform: skew(-10deg); animation: shoulderTurn 2s ease-out 0.5s both;"></div>
-                    <div class="scene-description">[Vincent turns away from the corrupted screen]</div>
+                    <div class="scene-description">[POV shot, Vincent's shoulder in frame, quick panicked turn from corrupted monitor]</div>
                 </div>
             `,
-            cut22: `
+            cut20: `
                 <div class="cut end-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
                     <div style="color: #fff; font-size: 72px; font-weight: bold; letter-spacing: 10px; text-align: center; animation: fadeIn 0.5s;">IMPRINTED</div>
-                    <div class="scene-description">[Title card]</div>
+                    <div class="scene-description">[Title emerges from darkness, letterboxed cinematic frame, ominous silence]</div>
                 </div>
             `,
-            cut23: `
+            cut21: `
                 <div class="cut end-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
                     <div style="color: #fff; font-size: 72px; font-weight: bold; letter-spacing: 10px; text-align: center; animation: fadeIn 0.5s;">IMPRINTED</div>
                     <div style="color: #fff; font-size: 18px; margin-top: 20px; opacity: 0.7; text-align: center; animation: fadeIn 0.5s 0.2s both;">She's waiting for you</div>
                     <div style="margin-top: 40px; padding: 15px 30px; background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; font-size: 20px; border: 2px solid #4a7ccc; cursor: pointer; text-align: center; animation: fadeIn 0.5s 0.4s both, glow 2s infinite;">WISHLIST NOW ON STEAM</div>
-                    <div class="scene-description">[Final card with Steam call-to-action]</div>
+                    <div class="scene-description">[Steam button glows, marketing text appears, release anticipation builds]</div>
                 </div>
             `
         };

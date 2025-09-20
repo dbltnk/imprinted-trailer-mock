@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprinted - Trailer Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0f0f0f;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* YouTube Header */
+        .yt-header {
+            background: #212121;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #303030;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .yt-header-content {
+            display: flex;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 24px;
+        }
+
+        .yt-logo {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: 40px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 640px;
+            display: flex;
+            margin: 0 40px;
+        }
+
+        .search-input {
+            flex: 1;
+            height: 40px;
+            background: #121212;
+            border: 1px solid #303030;
+            color: #fff;
+            padding: 0 16px;
+            font-size: 16px;
+        }
+
+        .search-btn {
+            width: 64px;
+            height: 40px;
+            background: #303030;
+            border: 1px solid #303030;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Main Content Layout */
+        .yt-content {
+            display: flex;
+            max-width: 1280px;
+            margin: 24px auto;
+            gap: 24px;
+            padding: 0 24px;
+        }
+
+        .yt-primary {
+            flex: 1;
+            max-width: 856px;
+        }
+
+        .yt-secondary {
+            width: 400px;
+            flex-shrink: 0;
+        }
+
+        /* Video Player */
+        #trailer {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        /* Video Info */
+        .video-info {
+            padding: 20px 0;
+            border-bottom: 1px solid #303030;
+        }
+
+        .video-title {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .action-btn {
+            background: #272727;
+            border: none;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .channel-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .channel-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ff6b35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .channel-details {
+            flex: 1;
+        }
+
+        .channel-name {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .channel-subs {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .subscribe-btn {
+            background: #cc0000;
+            border: none;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Comments */
+        .comments-section {
+            padding: 24px 0;
+        }
+
+        .comments-header {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .comment {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #666;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-author {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .comment-text {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .comment-meta {
+            color: #aaa;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Sidebar */
+        .sidebar-video {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .sidebar-video:hover {
+            background: #272727;
+        }
+
+        .sidebar-thumbnail {
+            width: 168px;
+            height: 94px;
+            background: #333;
+            border-radius: 8px;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .sidebar-thumbnail.horror {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        }
+
+        .sidebar-thumbnail.detective {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .sidebar-thumbnail.puzzle {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .sidebar-thumbnail.analysis {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .sidebar-thumbnail.mystery {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .sidebar-thumbnail.internet {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+        }
+
+        .sidebar-thumbnail.psychology {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+        }
+
+        .sidebar-thumbnail.classic {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+        }
+
+        .sidebar-thumbnail.design {
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+        }
+
+        .sidebar-duration {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 2px 4px;
+            font-size: 12px;
+            border-radius: 2px;
+        }
+
+        .sidebar-info {
+            flex: 1;
+        }
+
+        .sidebar-title {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .sidebar-channel {
+            color: #aaa;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-views {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .cut {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            opacity: 0;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .cut.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Transition flash - subtle white frame */
+        .cut.transitioning {
+            animation: cutFlash 0.15s;
+        }
+
+        @keyframes cutFlash {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+                filter: brightness(1.3);
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Scene description overlay */
+        .scene-description {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            right: 0;
+            color: #888;
+            padding: 16px 30px;
+            font-size: 24px;
+            font-style: italic;
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+            margin: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        /* DESKTOP SCENES */
+        .desktop {
+            background: linear-gradient(135deg, #2a3f5f 0%, #1e2d42 100%);
+            padding: 20px;
+        }
+
+        .window {
+            position: absolute;
+            background: #f0f0f0;
+            border: 2px solid #999;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .window-header {
+            background: linear-gradient(to bottom, #e8e8e8, #d0d0d0);
+            padding: 5px 10px;
+            border-bottom: 1px solid #999;
+            font-size: 12px;
+            font-family: sans-serif;
+        }
+
+        .window-content {
+            padding: 10px;
+            background: white;
+        }
+
+        .chat-message {
+            padding: 5px;
+            margin: 5px 0;
+            background: #e9e9e9;
+            border-radius: 3px;
+            font-size: 13px;
+            animation: messageSlide 0.3s;
+        }
+
+        @keyframes messageSlide {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .email-list {
+            font-size: 12px;
+            color: #333;
+        }
+
+        .email-item {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .email-item:hover {
+            background: #f0f0f0;
+        }
+
+        /* VHS SCENES */
+        .vhs-scene {
+            background: #000;
+            position: relative;
+        }
+
+        .vhs-overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.15),
+                    rgba(0, 0, 0, 0.15) 1px,
+                    transparent 1px,
+                    transparent 2px);
+            animation: vhsTracking 0.3s infinite;
+        }
+
+        @keyframes vhsTracking {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(2px);
+            }
+        }
+
+        .vhs-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vhs-text {
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            text-shadow: 2px 2px 4px rgba(255, 0, 255, 0.5);
+            text-align: center;
+        }
+
+        .vhs-date {
+            color: #ff0000;
+            font-size: 24px;
+            animation: vhsGlow 2s infinite;
+        }
+
+        @keyframes vhsGlow {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .vhs-image {
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle at center, #222, #000);
+            filter: blur(2px) saturate(0.5);
+        }
+
+        /* TAPE SCENES */
+        .tape-scene {
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .tape-reel {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #444;
+            border-radius: 50%;
+            position: relative;
+            animation: spin 2s linear infinite;
+        }
+
+        .tape-reel::before {
+            content: '';
+            position: absolute;
+            inset: 30%;
+            border: 5px solid #666;
+            border-radius: 50%;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .tape-label {
+            margin-top: 30px;
+            color: #999;
+            font-size: 18px;
+        }
+
+        /* WAVESPLICE SCENES */
+        .wavesplice {
+            background: #0a0a0a;
+            padding: 20px;
+            color: #0f0;
+        }
+
+        .waveform {
+            height: 150px;
+            background: linear-gradient(90deg,
+                    #00ff00 0%, #00ff00 20%,
+                    #ffff00 20%, #ffff00 40%,
+                    #ff0000 40%, #ff0000 60%,
+                    #ff00ff 60%, #ff00ff 80%,
+                    #00ffff 80%, #00ffff 100%);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waveform::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: scan 2s infinite;
+        }
+
+        @keyframes scan {
+            to {
+                left: 100%;
+            }
+        }
+
+        /* FORUM SCENES */
+        .forum {
+            background: #1e1e1e;
+            padding: 20px;
+            color: #0f0;
+        }
+
+        .forum-post {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            padding: 10px;
+            margin: 10px;
+            font-size: 13px;
+        }
+
+        .forum-post.warning {
+            border-color: #f00;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                border-color: #f00;
+                box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            }
+
+            50% {
+                border-color: #ff0;
+                box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+            }
+        }
+
+        /* POV SCENE */
+        .pov-scene {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pov-desktop {
+            position: absolute;
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            transform-origin: center;
+            animation: zoomOut 2s ease-out;
+        }
+
+        @keyframes zoomOut {
+            from {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            to {
+                width: 60%;
+                height: 60%;
+                top: 20%;
+                left: 20%;
+            }
+        }
+
+        .pov-turn {
+            animation: quickTurn 0.5s ease-out 1.5s both;
+        }
+
+        @keyframes quickTurn {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(180deg) scale(1.2);
+            }
+        }
+
+        /* GLITCH SCENES */
+        .glitch-scene {
+            background: #000;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-effect {
+            position: absolute;
+            inset: 0;
+            animation: glitchMain 0.3s infinite;
+        }
+
+        @keyframes glitchMain {
+
+            0%,
+            100% {
+                transform: translate(0);
+                filter: hue-rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-2px, 2px);
+                filter: hue-rotate(90deg);
+            }
+
+            50% {
+                transform: translate(2px, -2px);
+                filter: hue-rotate(180deg);
+            }
+
+            75% {
+                transform: translate(-2px, -2px);
+                filter: hue-rotate(270deg);
+            }
+        }
+
+        .glitch-text {
+            color: #fff;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff;
+            z-index: 10;
+            position: relative;
+            display: block;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .corruption {
+            position: absolute;
+            width: 100%;
+            height: 20%;
+            background: repeating-linear-gradient(90deg,
+                    #ff00ff,
+                    #ff00ff 10px,
+                    #00ffff 10px,
+                    #00ffff 20px);
+            opacity: 0.7;
+            animation: corruptMove 0.5s infinite;
+            z-index: 5;
+        }
+
+        @keyframes corruptMove {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(300%);
+            }
+        }
+
+        /* END CARD */
+        .end-card {
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+        }
+
+        .title {
+            font-size: 72px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            animation: fadeIn 0.5s;
+        }
+
+        .tagline {
+            font-size: 18px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeIn 0.5s 0.2s both;
+        }
+
+        .steam-cta {
+            margin-top: 40px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            font-size: 20px;
+            border: 2px solid #4a7ccc;
+            cursor: pointer;
+            animation: fadeIn 0.5s 0.4s both, glow 2s infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(74, 124, 204, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(74, 124, 204, 0.8);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes helloVincent {
+
+            0%,
+            20% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes monitorGlitch {
+            0% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            25% {
+                transform: scale(1.02);
+                filter: brightness(1.2);
+            }
+
+            50% {
+                transform: scale(0.98);
+                filter: brightness(0.8);
+            }
+
+            75% {
+                transform: scale(1.01);
+                filter: brightness(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+        }
+
+        @keyframes shoulderTurn {
+            0% {
+                transform: skew(-10deg) rotate(0deg);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                transform: skew(-10deg) rotate(-15deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes crashZoomOut {
+            0% {
+                transform: scale(5) rotate(5deg);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(2) rotate(2deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* VIDEO CONTROLS */
+        #controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px;
+            color: white;
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: #333;
+            color: white;
+            border: 1px solid #666;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 14px;
+            min-width: 40px;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .timeline-container {
+            flex: 1;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: #4a7ccc;
+            border-radius: 3px;
+            width: 0%;
+            position: relative;
+        }
+
+        .timeline-scrubber {
+            position: absolute;
+            right: -8px;
+            top: -5px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            cursor: grab;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-scrubber:active {
+            cursor: grabbing;
+        }
+
+        #timeDisplay {
+            min-width: 80px;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        #cutInfo {
+            font-size: 11px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- YouTube Header -->
+    <div class="yt-header">
+        <div class="yt-header-content">
+            <div class="yt-logo">📺 YouTube</div>
+            <div class="search-container">
+                <input class="search-input" type="text" value="new found footage games 2026" readonly>
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="yt-content">
+        <!-- Primary Content -->
+        <div class="yt-primary">
+            <!-- Video Player -->
+            <div id="trailer">
+                <!-- All cuts will be dynamically populated here -->
+                <div id="controls">
+                    <div class="control-row">
+                        <button id="playPauseBtn" onclick="togglePlayPause()">▶</button>
+                        <button onclick="stopTrailer()">⏹</button>
+                        <div class="timeline-container" id="timeline">
+                            <div class="timeline-progress" id="progress">
+                                <div class="timeline-scrubber"></div>
+                            </div>
+                        </div>
+                        <span id="timeDisplay">0:00 / 1:00</span>
+                        <span id="cutInfo" style="font-size: 10px; margin-left: 8px;">Shot 1/24</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Info -->
+            <div class="video-info">
+                <div class="video-title">IMPRINTED - Reveal Trailer | Psychological Horror Game 2026</div>
+                <div class="video-meta">47,832 views • 2 hours ago</div>
+                <div class="video-actions">
+                    <button class="action-btn">👍 2.1K</button>
+                    <button class="action-btn">👎 34</button>
+                    <button class="action-btn">Share</button>
+                    <button class="action-btn">Download</button>
+                    <button class="action-btn">...</button>
+                </div>
+                <div class="channel-info">
+                    <div class="channel-avatar">IG</div>
+                    <div class="channel-details">
+                        <div class="channel-name">IndieGameSpot</div>
+                        <div class="channel-subs">1.2M subscribers</div>
+                    </div>
+                    <button class="subscribe-btn">SUBSCRIBE</button>
+                </div>
+            </div>
+
+            <!-- Comments -->
+            <div class="comments-section">
+                <div class="comments-header">2,847 Comments</div>
+
+                <div class="comment">
+                    <div class="comment-avatar"
+                        style="background: #4285f4; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        H</div>
+                    <div class="comment-content">
+                        <div class="comment-author">@HorrorGameReviews</div>
+                        <div class="comment-text">This looks absolutely terrifying! The audio engineering angle is so
+                            unique. Finally something that's not just another jumpscare fest 😱</div>
+                        <div class="comment-meta">👍 524 • Reply • 2 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-avatar"
+                        style="background: #34a853; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        A</div>
+                    <div class="comment-content">
+                        <div class="comment-author">@AnalogHorrorFan</div>
+                        <div class="comment-text">The VHS aesthetic and found footage vibes remind me of Local58 and
+                            Gemini Home Entertainment. Getting major analog horror vibes from this!</div>
+                        <div class="comment-meta">👍 312 • Reply • 1 hour ago</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-avatar"
+                        style="background: #ea4335; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        R</div>
+                    <div class="comment-content">
+                        <div class="comment-author">@RetroGamer87</div>
+                        <div class="comment-text">The fake OS desktop interface looks incredible. Reminds me of Emily is
+                            Away and SIMULACRA. Can't wait to play this!</div>
+                        <div class="comment-meta">👍 189 • Reply • 45 minutes ago</div>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-avatar"
+                        style="background: #fbbc04; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        M</div>
+                    <div class="comment-content">
+                        <div class="comment-author">@AudioEngineer_Mike</div>
+                        <div class="comment-text">As someone who actually works in audio restoration, this looks
+                            incredibly authentic. The waveform visualizations and tools look spot-on!</div>
+                        <div class="comment-meta">👍 678 • Reply • 30 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="yt-secondary">
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail horror">
+                    <div class="sidebar-duration">12:34</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">TOP 10 Found Footage Horror Games You NEED to Play</div>
+                    <div class="sidebar-channel">GameRanx</div>
+                    <div class="sidebar-views">1.2M views • 3 days ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail analysis">
+                    <div class="sidebar-duration">8:45</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">SIMULACRA Review - When Your Phone Becomes a Horror Game</div>
+                    <div class="sidebar-channel">Alpha Beta Gamer</div>
+                    <div class="sidebar-views">523K views • 1 week ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail classic">
+                    <div class="sidebar-duration">15:22</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">Why Analog Horror is the FUTURE of Indie Games</div>
+                    <div class="sidebar-channel">Super Eyepatch Wolf</div>
+                    <div class="sidebar-views">847K views • 5 days ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail mystery">
+                    <div class="sidebar-duration">22:11</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">Her Story vs IMMORTALITY - Evolution of FMV Games</div>
+                    <div class="sidebar-channel">Noah Caldwell-Gervais</div>
+                    <div class="sidebar-views">234K views • 2 weeks ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail internet">
+                    <div class="sidebar-duration">9:33</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">Hypnospace Outlaw - The Internet Horror Game</div>
+                    <div class="sidebar-channel">Mandalore Gaming</div>
+                    <div class="sidebar-views">1.8M views • 1 month ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail psychology">
+                    <div class="sidebar-duration">18:47</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">The Psychology of Found Footage Horror</div>
+                    <div class="sidebar-channel">Film Theory</div>
+                    <div class="sidebar-views">2.1M views • 3 weeks ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail detective">
+                    <div class="sidebar-duration">11:28</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">The Case of the Golden Idol - Detective Puzzle Perfection</div>
+                    <div class="sidebar-channel">Skill Up</div>
+                    <div class="sidebar-views">456K views • 1 week ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail puzzle">
+                    <div class="sidebar-duration">25:13</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">Why Indie Horror Games Are Getting SCARIER</div>
+                    <div class="sidebar-channel">Jacob Geller</div>
+                    <div class="sidebar-views">1.3M views • 2 weeks ago</div>
+                </div>
+            </div>
+
+            <div class="sidebar-video">
+                <div class="sidebar-thumbnail design">
+                    <div class="sidebar-duration">16:41</div>
+                </div>
+                <div class="sidebar-info">
+                    <div class="sidebar-title">Return of the Obra Dinn - A Masterclass in Mystery Design</div>
+                    <div class="sidebar-channel">Game Maker's Toolkit</div>
+                    <div class="sidebar-views">892K views • 4 days ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION - EDIT HERE FOR EASY ADJUSTMENTS
+        // ============================================
+
+        // Duration for each cut in milliseconds
+        const CUT_DURATIONS = {
+            cut0: 1000,   // black start
+            cut1: 2000,   // desktop1
+            cut2: 2000,   // desktop2
+            cut3: 2000,   // desktop3
+            cut4: 2000,   // desktop4
+            cut5: 2000,   // vhs1
+            cut6: 2000,   // vhs2
+            cut7: 2000,   // vhs3
+            cut8: 2000,   // vhs4
+            cut9: 2000,   // tape1
+            cut10: 2000,  // tape2
+            cut11: 2000,  // tape3
+            cut12: 2000,  // tape4
+            cut13: 2500,  // wave1
+            cut14: 2500,  // wave2
+            cut15: 2500,  // forum1
+            cut16: 2500,  // forum2
+            cut17: 3000,  // forum3
+            cut18: 3000,  // hello vincent combined
+            cut19: 2000,  // glitch5
+            cut20: 3000,  // crash zoom out
+            cut21: 2000,  // pov1
+            cut22: 3000,  // end1
+            cut23: 7000   // end2
+        };
+
+        // Content for each cut
+        const CUT_CONTENT = {
+            cut0: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000;">
+                </div>
+            `,
+            cut1: `
+                <div class="cut desktop">
+                    <div class="window" style="left: 50%; top: 40%; transform: translate(-50%, -50%); width: 400px;">
+                        <div class="window-header">Login - ArdesiaOS</div>
+                        <div class="window-content">
+                            <div style="padding: 20px; text-align: center;">
+                                <div style="color: #666;">Password hint: name of dog</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Vincent's desktop - struggling with password]</div>
+                </div>
+            `,
+            cut2: `
+                <div class="cut desktop">
+                    <div class="window" style="left: 50%; top: 40%; transform: translate(-50%, -50%); width: 350px;">
+                        <div class="window-header">Photo Album - Italy Trip 2019</div>
+                        <div class="window-content">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                                <div style="background: #ddd; aspect-ratio: 1;"></div>
+                                <div style="background: #ccc; aspect-ratio: 1;"></div>
+                                <div style="background: #ddd; aspect-ratio: 1;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Personal photos - memories of Italy]</div>
+                </div>
+            `,
+            cut3: `
+                <div class="cut desktop">
+                    <div class="window" style="left: 50%; top: 40%; transform: translate(-50%, -50%); width: 300px;">
+                        <div class="window-header">Chat - Claudia</div>
+                        <div class="window-content">
+                            <div class="chat-message">Hey Vince, got another job for you</div>
+                            <div class="chat-message">Some old recordings need restoration</div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Chat notification - new audio restoration job]</div>
+                </div>
+            `,
+            cut4: `
+                <div class="cut desktop">
+                    <div class="window" style="left: 50%; top: 40%; transform: translate(-50%, -50%); width: 400px;">
+                        <div class="window-header">Email - work@vincebrandt.de</div>
+                        <div class="window-content">
+                            <div class="email-list">
+                                <div class="email-item"><strong>Claudia:</strong> Urgent - Client needs restoration</div>
+                                <div class="email-item"><strong>Mike:</strong> Check out this EVP recording!</div>
+                                <div class="email-item"><strong>Unknown:</strong> Viola Fossati Archive</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Mysterious email about Viola Fossati]</div>
+                </div>
+            `,
+            cut5: `
+                <div class="cut vhs-scene">
+                    <div class="vhs-overlay"></div>
+                    <div class="vhs-content">
+                        <div class="vhs-image"></div>
+                    </div>
+                    <div class="scene-description">[Degraded VHS footage - unclear figure]</div>
+                </div>
+            `,
+            cut6: `
+                <div class="cut vhs-scene">
+                    <div class="vhs-overlay"></div>
+                    <div class="vhs-content">
+                        <div class="vhs-text">
+                            <div class="vhs-date">14.10.1985</div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[VHS timestamp - October 1985]</div>
+                </div>
+            `,
+            cut7: `
+                <div class="cut vhs-scene">
+                    <div class="vhs-overlay"></div>
+                    <div class="vhs-content">
+                        <div class="vhs-text">
+                            <div style="font-size: 36px; color: #f0f0f0;">Viola Fossati</div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Viola's name appears on degraded tape]</div>
+                </div>
+            `,
+            cut8: `
+                <div class="cut vhs-scene">
+                    <div class="vhs-overlay"></div>
+                    <div class="vhs-content">
+                        <div class="vhs-text">
+                            <div style="font-size: 24px; color: #aaa;">Colle Lunera</div>
+                        </div>
+                    </div>
+                    <div class="scene-description">[Location revealed - Colle Lunera, Italy]</div>
+                </div>
+            `,
+            cut9: `
+                <div class="cut tape-scene">
+                    <div class="tape-reel"></div>
+                    <div class="scene-description">[Professional tape reel spinning]</div>
+                </div>
+            `,
+            cut10: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #1a1a1a; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="width: 200px; height: 200px; border: 10px solid #444; border-radius: 50%; position: relative; animation: spin 2s linear infinite;">
+                        <div style="position: absolute; inset: 30%; border: 5px solid #666; border-radius: 50%;"></div>
+                    </div>
+                    <div style="margin-top: 30px; color: #999; font-size: 18px;">TAPE 1/92</div>
+                    <div class="scene-description">[Tape labeled "1/92" - January 1992]</div>
+                </div>
+            `,
+            cut11: `
+                <div class="cut tape-scene" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <div style="color: #f00; font-size: 24px;">DAMAGED</div>
+                    <div class="scene-description">[Warning - tape severely damaged]</div>
+                </div>
+            `,
+            cut12: `
+                <div class="cut tape-scene" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <div class="tape-reel" style="border-color: #f00; animation-duration: 0.5s;"></div>
+                    <div style="margin-top: 30px; color: #ff0; font-size: 18px;">RECOVERY IN PROGRESS...</div>
+                    <div class="scene-description">[Attempting to restore corrupted audio]</div>
+                </div>
+            `,
+            cut13: `
+                <div class="cut wavesplice">
+                    <div style="margin-bottom: 20px;">WaveSplice v3.2 - Professional Audio Restoration</div>
+                    <div class="waveform"></div>
+                    <div class="scene-description">[Professional audio software analyzing waveforms]</div>
+                </div>
+            `,
+            cut14: `
+                <div class="cut wavesplice">
+                    <div style="margin-bottom: 20px; color: #ff0;">WARNING: Anomalous frequencies detected</div>
+                    <div class="waveform" style="filter: hue-rotate(90deg);"></div>
+                    <div class="scene-description">[Software detecting impossible audio patterns]</div>
+                </div>
+            `,
+            cut15: `
+                <div class="cut forum">
+                    <div class="forum-post">
+                        <strong>soStrangely95:</strong> There's something wrong with these recordings...
+                    </div>
+                    <div class="scene-description">[Audiophile forum - users concerned]</div>
+                </div>
+            `,
+            cut16: `
+                <div class="cut forum">
+                    <div class="forum-post">
+                        <strong>portastrambo:</strong> Equipment failure during digitization. Never seen anything like it.
+                    </div>
+                    <div class="forum-post warning">
+                        <strong>I♥VF:</strong> DO NOT restore the final section.
+                    </div>
+                    <div class="scene-description">[Forum warnings escalating - urgent messages]</div>
+                </div>
+            `,
+            cut17: `
+                <div class="cut forum">
+                    <div class="forum-post">
+                        <strong>portastrambo:</strong> Equipment failure during digitization. Never seen anything like it.
+                    </div>
+                    <div class="forum-post warning">
+                        <strong>I♥VF:</strong> DO NOT restore the final section.
+                    </div>
+                    <div class="forum-post warning">
+                        <strong>DeepSound:</strong> She's still in there. In the tape. I can hear her.
+                    </div>
+                    <div class="forum-post warning" style="border-color: #f00; animation: pulse 0.5s infinite;">
+                        <strong>soStrangely95:</strong> STOP THE RESTORATION NOW! Something is wrong!
+                    </div>
+                    <div class="scene-description">[Forum panic - warnings escalating]</div>
+                </div>
+            `,
+            cut18: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
+                    <div style="color: #fff; font-size: 48px; font-weight: bold; text-shadow: -3px 0 #ff00ff, 3px 0 #00ffff; z-index: 10; position: relative; display: block; text-align: center; line-height: 1.2; animation: helloVincent 3s ease-in-out;">HELLO VINCENT</div>
+                    <div class="scene-description">[She knows his name]</div>
+                </div>
+            `,
+            cut19: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; display: flex; align-items: center; justify-content: center;">
+                    <div style="position: absolute; width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #ff00ff, #ff00ff 10px, #00ffff 10px, #00ffff 20px); opacity: 0.8; animation: corruptMove 0.5s infinite; z-index: 5;"></div>
+                    <div class="scene-description">[Complete system corruption]</div>
+                </div>
+            `,
+            cut20: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; overflow: hidden;">
+                    <!-- Studio footage background -->
+                    <div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%); animation: crashZoomOut 3s ease-out;">
+                        <!-- Studio equipment silhouettes -->
+                        <div style="position: absolute; bottom: 0; left: 10%; width: 20%; height: 40%; background: linear-gradient(45deg, #444, #222); clip-path: polygon(0 100%, 100% 100%, 90% 0, 10% 0);"></div>
+                        <div style="position: absolute; bottom: 0; right: 15%; width: 25%; height: 35%; background: linear-gradient(45deg, #333, #111); clip-path: polygon(0 100%, 100% 100%, 80% 0, 20% 0);"></div>
+                        <!-- Desk with monitors -->
+                        <div style="position: absolute; bottom: 0; left: 40%; width: 30%; height: 25%; background: #333;"></div>
+                        <div style="position: absolute; bottom: 25%; left: 42%; width: 8%; height: 15%; background: #222; border: 1px solid #444;"></div>
+                        <div style="position: absolute; bottom: 25%; left: 52%; width: 8%; height: 15%; background: #222; border: 1px solid #444;"></div>
+                    </div>
+                    <div class="scene-description">[Crash zoom out - real studio footage]</div>
+                </div>
+            `,
+            cut21: `
+                <div class="cut" style="position: absolute; width: 100%; height: 100%; background: #000; overflow: hidden;">
+                    <!-- Monitor showing corruption -->
+                    <div style="position: absolute; width: 40%; height: 30%; top: 25%; left: 30%; background: #1a1a1a; border: 3px solid #333; animation: monitorGlitch 2s ease-out;">
+                        <div style="width: 100%; height: 100%; background: repeating-linear-gradient(90deg, #ff00ff, #ff00ff 5px, #00ffff 5px, #00ffff 10px); opacity: 0.6;"></div>
+                    </div>
+                    <!-- Shoulder silhouette -->
+                    <div style="position: absolute; bottom: -10%; right: -5%; width: 40%; height: 60%; background: linear-gradient(45deg, #111, #222); border-radius: 50% 50% 0 0; transform: skew(-10deg); animation: shoulderTurn 2s ease-out 0.5s both;"></div>
+                    <div class="scene-description">[Vincent turns away from the corrupted screen]</div>
+                </div>
+            `,
+            cut22: `
+                <div class="cut end-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <div style="color: #fff; font-size: 72px; font-weight: bold; letter-spacing: 10px; text-align: center; animation: fadeIn 0.5s;">IMPRINTED</div>
+                    <div class="scene-description">[Title card]</div>
+                </div>
+            `,
+            cut23: `
+                <div class="cut end-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+                    <div style="color: #fff; font-size: 72px; font-weight: bold; letter-spacing: 10px; text-align: center; animation: fadeIn 0.5s;">IMPRINTED</div>
+                    <div style="color: #fff; font-size: 18px; margin-top: 20px; opacity: 0.7; text-align: center; animation: fadeIn 0.5s 0.2s both;">She's waiting for you</div>
+                    <div style="margin-top: 40px; padding: 15px 30px; background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; font-size: 20px; border: 2px solid #4a7ccc; cursor: pointer; text-align: center; animation: fadeIn 0.5s 0.4s both, glow 2s infinite;">WISHLIST NOW ON STEAM</div>
+                    <div class="scene-description">[Final card with Steam call-to-action]</div>
+                </div>
+            `
+        };
+
+        // ============================================
+        // TRAILER ENGINE - NO NEED TO EDIT BELOW
+        // ============================================
+
+        const cuts = [];
+        const trailerDiv = document.getElementById('trailer');
+
+        // Build cuts array from configuration
+        Object.keys(CUT_DURATIONS).forEach(key => {
+            cuts.push({
+                name: key,
+                duration: CUT_DURATIONS[key],
+                content: CUT_CONTENT[key]
+            });
+        });
+
+        // Populate trailer with all cuts
+        cuts.forEach((cut, index) => {
+            const cutDiv = document.createElement('div');
+            cutDiv.innerHTML = cut.content;
+
+            if (cutDiv.firstElementChild) {
+                cutDiv.firstElementChild.dataset.index = index;
+                trailerDiv.appendChild(cutDiv.firstElementChild);
+            }
+        });
+
+        let currentCut = 0;
+        let isPlaying = false;
+        let timer = null;
+        let startTime = 0;
+        let elapsedTime = 0;
+        let isDragging = false;
+
+        const timeline = document.getElementById('timeline');
+        const progress = document.getElementById('progress');
+        const scrubber = progress.querySelector('.timeline-scrubber');
+
+        function showCut(index) {
+            const allCuts = document.querySelectorAll('.cut');
+            allCuts.forEach(c => {
+                c.classList.remove('active', 'transitioning');
+            });
+
+            if (allCuts[index]) {
+                allCuts[index].classList.add('active', 'transitioning');
+                setTimeout(() => {
+                    allCuts[index].classList.remove('transitioning');
+                }, 150);
+            }
+
+            document.getElementById('cutInfo').textContent = `Shot ${index + 1}/${cuts.length}`;
+        }
+
+        function updateTimeline() {
+            const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
+            const currentTime = Math.min(elapsedTime, totalDuration);
+            const seconds = Math.floor(currentTime / 1000);
+            const totalSeconds = Math.floor(totalDuration / 1000);
+            document.getElementById('timeDisplay').textContent =
+                `0:${seconds.toString().padStart(2, '0')} / 0:${totalSeconds.toString().padStart(2, '0')}`;
+
+            // Update progress bar
+            const progressPercent = (currentTime / totalDuration) * 100;
+            progress.style.width = progressPercent + '%';
+        }
+
+        function seekTo(percent) {
+            const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
+            elapsedTime = (percent / 100) * totalDuration;
+
+            // Find which cut we're in
+            let accumulated = 0;
+            for (let i = 0; i < cuts.length; i++) {
+                if (elapsedTime < accumulated + cuts[i].duration) {
+                    currentCut = i;
+                    showCut(i);
+                    break;
+                }
+                accumulated += cuts[i].duration;
+            }
+
+            updateTimeline();
+            if (isPlaying) {
+                startTime = Date.now() - elapsedTime;
+            }
+        }
+
+        function playTrailer() {
+            if (isPlaying) return;
+            isPlaying = true;
+            startTime = Date.now() - elapsedTime;
+
+            function advance() {
+                if (!isPlaying) return;
+
+                elapsedTime = Date.now() - startTime;
+                updateTimeline();
+
+                let accumulated = 0;
+                for (let i = 0; i < cuts.length; i++) {
+                    if (elapsedTime < accumulated + cuts[i].duration) {
+                        if (currentCut !== i) {
+                            currentCut = i;
+                            showCut(i);
+                        }
+                        break;
+                    }
+                    accumulated += cuts[i].duration;
+                }
+
+                const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
+                if (elapsedTime >= totalDuration) {
+                    pauseTrailer();
+                    return;
+                }
+
+                timer = requestAnimationFrame(advance);
+            }
+
+            advance();
+        }
+
+        function pauseTrailer() {
+            isPlaying = false;
+            if (timer) {
+                cancelAnimationFrame(timer);
+                timer = null;
+            }
+        }
+
+        function togglePlayPause() {
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            if (isPlaying) {
+                pauseTrailer();
+                playPauseBtn.textContent = '▶';
+            } else {
+                playTrailer();
+                playPauseBtn.textContent = '⏸';
+            }
+        }
+
+        function stopTrailer() {
+            pauseTrailer();
+            currentCut = 0;
+            elapsedTime = 0;
+            showCut(0);
+            updateTimeline();
+            document.getElementById('playPauseBtn').textContent = '▶';
+        }
+
+
+        // Timeline interaction
+        timeline.addEventListener('click', (e) => {
+            if (!isDragging) {
+                const rect = timeline.getBoundingClientRect();
+                const percent = ((e.clientX - rect.left) / rect.width) * 100;
+                seekTo(Math.max(0, Math.min(100, percent)));
+            }
+        });
+
+        scrubber.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const rect = timeline.getBoundingClientRect();
+                const percent = ((e.clientX - rect.left) / rect.width) * 100;
+                seekTo(Math.max(0, Math.min(100, percent)));
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Initialize
+        resetTrailer();
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                if (isPlaying) pauseTrailer();
+                else playTrailer();
+            } else if (e.code === 'KeyR') {
+                resetTrailer();
+            } else if (e.code === 'ArrowRight') {
+                const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
+                const newTime = Math.min(elapsedTime + 5000, totalDuration);
+                seekTo((newTime / totalDuration) * 100);
+            } else if (e.code === 'ArrowLeft') {
+                const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
+                const newTime = Math.max(elapsedTime - 5000, 0);
+                seekTo((newTime / totalDuration) * 100);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1010,6 +1010,7 @@
                         </div>
                         <span id="timeDisplay">0:00 / 1:00</span>
                         <span id="cutInfo" style="font-size: 10px; margin-left: 8px;">Shot 1/22</span>
+                        <button id="fullscreenBtn" onclick="toggleFullscreen()" style="margin-left: auto;">⛶</button>
                     </div>
                 </div>
             </div>
@@ -1583,6 +1584,23 @@
             document.getElementById('playPauseBtn').textContent = '▶';
         }
 
+        function toggleFullscreen() {
+            const trailer = document.getElementById('trailer');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            if (!document.fullscreenElement) {
+                trailer.requestFullscreen().then(() => {
+                    fullscreenBtn.textContent = '⛶';
+                }).catch(err => {
+                    console.log('Error attempting to enable fullscreen:', err.message);
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    fullscreenBtn.textContent = '⛶';
+                });
+            }
+        }
+
 
         // Timeline interaction
         timeline.addEventListener('click', (e) => {
@@ -1617,10 +1635,12 @@
         document.addEventListener('keydown', (e) => {
             if (e.code === 'Space') {
                 e.preventDefault();
-                if (isPlaying) pauseTrailer();
-                else playTrailer();
+                togglePlayPause();
             } else if (e.code === 'KeyR') {
-                resetTrailer();
+                stopTrailer();
+            } else if (e.code === 'KeyF') {
+                e.preventDefault();
+                toggleFullscreen();
             } else if (e.code === 'ArrowRight') {
                 const totalDuration = cuts.reduce((sum, c) => sum + c.duration, 0);
                 const newTime = Math.min(elapsedTime + 5000, totalDuration);
